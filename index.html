@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Private Ride Service – Cypress &amp; Greater Houston</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap">
+<style>
+:root{--bg:#F3F6FA;--card:#FFFFFF;--fg:#0F1B2D;--muted:#46546A;--line:#D5DDE8;--accent:#F2A900;--accent-ink:#0F1B2D;--accent-text:#8A5A00;--hero:#0F1B2D;--hero-fg:#FFFFFF;--hero-muted:#B8C4D6;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);background:var(--bg)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0B1422;--card:#14233A;--fg:#FFFFFF;--muted:#B8C4D6;--line:#2A3C5C;--accent-text:#F2A900;--hero:#14233A;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0B1422;--card:#14233A;--fg:#FFFFFF;--muted:#B8C4D6;--line:#2A3C5C;--accent-text:#F2A900;--hero:#14233A;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:'Manrope',system-ui,-apple-system,'Segoe UI',Arial,sans-serif;line-height:1.45}
+main{max-width:480px;margin:0 auto;padding:0 0 32px}
+.hero{background:var(--hero);color:var(--hero-fg);padding:32px 24px 28px;border-radius:0 0 24px 24px}
+.eyebrow{font-size:13px;font-weight:800;letter-spacing:.24em;color:var(--accent);margin:0 0 14px}
+h1{font-size:34px;line-height:1.1;font-weight:800;margin:0 0 12px}
+.hero p.sub{margin:0 0 22px;color:var(--hero-muted);font-size:17px}
+.cta{display:flex;flex-direction:column;align-items:center;gap:2px;background:var(--accent);color:var(--accent-ink);text-decoration:none;font-weight:800;font-size:20px;padding:16px;border-radius:14px;min-height:56px}
+.cta small{font-size:15px;font-weight:600}
+section{padding:24px 20px 0}
+h2{font-size:20px;margin:0 0 12px;font-weight:800}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:6px 16px}
+.row{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:12px 0;border-bottom:1px solid var(--line)}
+.row:last-child{border-bottom:0}
+.row b{display:block;font-size:16px}
+.row span.d{font-size:14px;color:var(--muted)}
+.row .p{font-weight:800;font-size:18px;white-space:nowrap;text-align:right}
+.seg{display:grid;grid-template-columns:1fr 1fr;gap:6px;background:var(--line);padding:4px;border-radius:12px;margin-bottom:16px}
+.seg button{font:inherit;font-weight:700;font-size:16px;min-height:44px;border:0;border-radius:9px;background:transparent;color:var(--fg);cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--card);box-shadow:0 1px 3px rgba(0,0,0,.25)}
+.est{padding:16px}
+label{display:block;font-weight:600;font-size:15px;margin:0 0 6px}
+input[type=number],input[type=text],input[type=date],input[type=time]{width:100%;font:inherit;font-size:18px;min-height:48px;padding:8px 12px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--fg);margin-bottom:14px}
+.chk{display:flex;align-items:center;gap:12px;min-height:44px;margin-bottom:6px}
+.chk input{width:22px;height:22px;accent-color:var(--accent)}
+.chk label{margin:0}
+.out{margin-top:10px;padding-top:14px;border-top:1px solid var(--line)}
+.total{font-size:40px;font-weight:800;line-height:1.1}
+.total small{display:block;font-size:14px;font-weight:600;color:var(--muted);margin-bottom:4px}
+ul.bd{list-style:none;margin:12px 0;padding:0;font-size:15px;color:var(--muted)}
+ul.bd li{display:flex;justify-content:space-between;gap:12px;padding:3px 0}
+.btn2{display:block;text-align:center;text-decoration:none;font-weight:800;font-size:17px;padding:14px;border-radius:12px;border:2px solid var(--accent);color:var(--fg);min-height:52px}
+.note{font-size:13px;color:var(--muted);margin:14px 4px 0}
+.at{color:var(--accent-text);font-weight:800}
+.h3{font-size:17px;margin:20px 0 12px;font-weight:800}
+</style>
+</head>
+<body>
+<main>
+<header class="hero">
+<p class="eyebrow">PRIVATE RIDE SERVICE</p>
+<h1>Rides when you need them.</h1>
+<p class="sub">Pre-booked rides, airport runs and hourly service across Cypress and Greater Houston, TX.</p>
+<a class="cta" id="cta" href="sms:+13014108100" target="_top">Text to book<small>(301) 410-8100</small></a>
+</header>
+
+<section>
+<h2>Base prices</h2>
+<div class="card">
+<div class="row"><div><b>By the mile</b><span class="d">Minimum fare <span class="at" data-p="minFare"></span></span></div><div class="p"><span data-p="perMile"></span>/mile</div></div>
+<div class="row"><div><b>By the hour</b><span class="d"><span data-p="minHours"></span>-hour minimum</span></div><div class="p"><span data-p="hourly"></span>/hour</div></div>
+<div class="row"><div><b>Waiting time</b><span class="d">While parked and waiting for you</span></div><div class="p"><span data-p="waitHour"></span>/hour</div></div>
+<div class="row"><div><b>Airport pickup or drop-off</b><span class="d">Added once per trip</span></div><div class="p">+<span data-p="airport"></span></div></div>
+<div class="row"><div><b>Tolls</b><span class="d">Billed at cost</span></div><div class="p">At cost</div></div>
+</div>
+</section>
+
+<section>
+<h2>Estimate your trip</h2>
+<div class="card est">
+<div class="seg" role="group" aria-label="Booking type">
+<button type="button" id="bMile" aria-pressed="true">By the mile</button>
+<button type="button" id="bHour" aria-pressed="false">By the hour</button>
+</div>
+<div id="pMile">
+<label for="miles">Trip distance (miles)</label>
+<input id="miles" type="number" inputmode="decimal" min="0" step="0.5" value="10">
+<label for="wait">Waiting time (minutes)</label>
+<input id="wait" type="number" inputmode="numeric" min="0" step="5" value="0">
+</div>
+<div id="pHour" hidden>
+<label for="hours">Hours booked</label>
+<input id="hours" type="number" inputmode="decimal" min="0" step="0.5" value="2">
+</div>
+<div class="chk"><input id="air" type="checkbox"><label for="air">Airport pickup or drop-off</label></div>
+<div class="out" aria-live="polite">
+<div class="total"><small>Estimated total, before tolls</small><span id="tot"></span></div>
+<ul class="bd" id="bd"></ul>
+<h3 class="h3">Booking details</h3>
+<label for="nm">Your name</label>
+<input id="nm" type="text" autocomplete="name">
+<label for="pu">Pickup address</label>
+<input id="pu" type="text" autocomplete="street-address">
+<label for="dr">Drop-off address</label>
+<input id="dr" type="text">
+<label for="dt">Date</label>
+<input id="dt" type="date">
+<label for="tm">Pickup time</label>
+<input id="tm" type="time">
+<label for="px">Passengers</label>
+<input id="px" type="number" inputmode="numeric" min="1" max="6" value="1">
+<a class="cta" id="req" href="sms:+13014108100" target="_top">Text my booking request</a>
+</div>
+</div>
+<p class="note">Estimates only. I confirm the final price by text before your ride. Tolls are billed at cost. The button opens a text to me with your details filled in; nothing is sent until you press send.</p>
+</section>
+</main>
+<script>
+var P={minFare:10,perMile:1.6,hourly:40,minHours:2,waitHour:20,airport:8};
+var NUM='+13014108100';
+function $(i){return document.getElementById(i)}
+function money(n){return '$'+n.toFixed(2)}
+function money0(n){return n%1===0?'$'+n:'$'+n.toFixed(2)}
+document.querySelectorAll('[data-p]').forEach(function(e){var k=e.getAttribute('data-p');e.textContent=k==='minHours'?P[k]:money0(P[k])});
+var mode='mile';
+function setMode(m){mode=m;$('bMile').setAttribute('aria-pressed',m==='mile');$('bHour').setAttribute('aria-pressed',m==='hour');$('pMile').hidden=m!=='mile';$('pHour').hidden=m!=='hour';calc()}
+function calc(){
+var lines=[],total=0,desc='';
+if(mode==='mile'){
+var mi=Math.max(0,parseFloat($('miles').value)||0),w=Math.max(0,parseFloat($('wait').value)||0);
+var raw=mi*P.perMile,base=Math.max(P.minFare,raw);
+lines.push([mi+' mi × '+money(P.perMile)+(raw<P.minFare?' (minimum fare applies)':''),base]);total+=base;
+if(w>0){var wc=w/60*P.waitHour;lines.push(['Waiting '+w+' min',wc]);total+=wc}
+desc=mi+' miles'+(w>0?', '+w+' min waiting':'');
+}else{
+var h=Math.max(0,parseFloat($('hours').value)||0),b=Math.max(P.minHours,h);
+lines.push([b+' hr × '+money0(P.hourly)+(h<P.minHours?' ('+P.minHours+'-hour minimum)':''),b*P.hourly]);total+=b*P.hourly;
+desc=b+' hours booked';
+}
+if($('air').checked){lines.push(['Airport fee',P.airport]);total+=P.airport;desc+=', airport trip'}
+$('tot').textContent=money(total);
+var ul=$('bd');ul.textContent='';
+lines.forEach(function(l){var li=document.createElement('li'),a=document.createElement('span'),b=document.createElement('span');a.textContent=l[0];b.textContent=money(l[1]);li.appendChild(a);li.appendChild(b);ul.appendChild(li)});
+var v=function(i){return ($(i).value||'').trim()};
+var msg='Booking request'+(v('nm')?' from '+v('nm'):'')+'. Pickup: '+(v('pu')||'[add]')+'. Drop-off: '+(v('dr')||'[add]')+'. When: '+(v('dt')||'[date]')+' '+(v('tm')||'[time]')+'. Passengers: '+(v('px')||'1')+'. Trip: '+desc+'. Estimate: '+money(total)+' plus tolls.';
+$('req').href='sms:'+NUM+'?&body='+encodeURIComponent(msg);
+}
+$('bMile').onclick=function(){setMode('mile')};
+$('bHour').onclick=function(){setMode('hour')};
+['miles','wait','hours','air','nm','pu','dr','dt','tm','px'].forEach(function(i){$(i).addEventListener('input',calc);$(i).addEventListener('change',calc)});
+calc();
+</script>
+</body>
+</html>
